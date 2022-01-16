@@ -10,6 +10,7 @@ import com.friend.zone.databinding.ActivityHomeBinding
 import com.friend.zone.databinding.ItemFriendBinding
 import com.friend.zone.ui.detail.FriendDetailActivity
 import com.friend.zone.ui.login.LoginActivity
+import com.friend.zone.ui.profile.UpdateProfileActivity
 import com.nuryazid.core.base.activity.CoreActivity
 import com.nuryazid.core.base.adapter.CoreListAdapter
 import com.nuryazid.core.data.CoreSession
@@ -36,8 +37,8 @@ class HomeActivity : CoreActivity<ActivityHomeBinding, HomeViewModel>(R.layout.a
     }
 
     fun openProfile() {
-        /*val intentProfile = Intent(this,  UpdateProfileActivity::class.java )
-        startActivity(intentProfile)*/
+        val intentProfile = Intent(this,  UpdateProfileActivity::class.java )
+        startActivity(intentProfile)
     }
 
     fun logout() {
