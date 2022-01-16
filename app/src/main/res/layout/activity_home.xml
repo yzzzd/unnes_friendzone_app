@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.friend.zone.ui.home.HomeViewModel" />
+
+        <variable
+            name="adapter"
+            type="com.nuryazid.core.base.adapter.CoreListAdapter" />
+
+        <variable
+            name="activity"
+            type="com.friend.zone.ui.home.HomeActivity" />
+
+        <import type="android.view.View"/>
+
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#EFEFEF"
+        android:orientation="vertical"
+        tools:context=".ui.home.HomeActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_header_home"
+            android:gravity="center_vertical"
+            android:padding="24dp">
+
+            <ImageView
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                app:imageCircle="@{true}"
+                android:onClick="@{() -> activity.openProfile()}"
+                app:imageUrl="@{viewModel.user.photo}" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text='@{"Hello " + viewModel.user.name}'
+                android:textColor="@color/black"
+                android:textSize="24dp"
+                android:textStyle="bold|italic" />
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adapter="@{adapter}"
+                android:clipToPadding="false"
+                android:padding="12dp"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2"
+                tools:itemCount="7"
+                tools:listitem="@layout/item_friend" />
+
+            <ProgressBar
+                android:visibility="@{viewModel.showLoading ? View.VISIBLE : View.GONE}"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+</layout>
