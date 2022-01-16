@@ -5,11 +5,11 @@
 
         <variable
             name="viewModel"
-            type="com.nuryazid.friendzone.ui.profile.UpdateProfileViewModel" />
+            type="com.friend.zone.ui.profile.UpdateProfileViewModel" />
 
         <variable
             name="activity"
-            type="com.nuryazid.friendzone.ui.profile.UpdateProfileActivity" />
+            type="com.friend.zone.ui.profile.UpdateProfileActivity" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -23,6 +23,7 @@
         tools:context=".ui.profile.UpdateProfileActivity">
 
         <ImageView
+            android:id="@+id/iv_photo"
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:layout_gravity="center_horizontal"

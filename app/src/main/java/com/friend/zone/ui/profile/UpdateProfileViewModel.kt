@@ -44,6 +44,8 @@ class UpdateProfileViewModel: ViewModel() {
             }
 
             ApiObserver({ apiService.updateProfile(name, about, newPassword, newPhoto) }) {
+                val data = it.getJSONObject("data")
+                CoreSession(context).setValue(Const.SESSION.USER, data.toString())
                 apiResponse.postValue(ApiResponse().responseSuccess("Berhasil update profile"))
             }.onError {
                 apiResponse.postValue(it)
