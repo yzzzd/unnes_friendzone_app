@@ -1,14 +1,16 @@
 package com.friend.zone.ui.home
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import com.friend.zone.R
-import com.friend.zone.data.Const
 import com.friend.zone.data.User
 import com.friend.zone.databinding.ActivityHomeBinding
 import com.friend.zone.databinding.ItemFriendBinding
+import com.friend.zone.ui.login.LoginActivity
 import com.nuryazid.core.base.activity.CoreActivity
 import com.nuryazid.core.base.adapter.CoreListAdapter
+import com.nuryazid.core.data.CoreSession
 
 class HomeActivity : CoreActivity<ActivityHomeBinding, HomeViewModel>(R.layout.activity_home) {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,5 +36,21 @@ class HomeActivity : CoreActivity<ActivityHomeBinding, HomeViewModel>(R.layout.a
     fun openProfile() {
         /*val intentProfile = Intent(this,  UpdateProfileActivity::class.java )
         startActivity(intentProfile)*/
+    }
+
+    fun logout() {
+        AlertDialog.Builder(this)
+            .setMessage("Apakah kamu yakin akan keluar?")
+            .setPositiveButton("Keluar") { dialog, i ->
+                dialog.dismiss()
+                CoreSession(this).clearAll()
+                val loginIntent = Intent(this, LoginActivity::class.java)
+                startActivity(loginIntent)
+                finish()
+            }
+            .setNegativeButton("Batal") { dialog, i ->
+                dialog.dismiss()
+            }
+            .show()
     }
 }
