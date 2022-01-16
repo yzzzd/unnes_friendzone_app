@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.friend.zone.App
 import com.friend.zone.api.ApiService
 import com.friend.zone.data.Const
+import com.google.firebase.messaging.FirebaseMessaging
 import com.nuryazid.core.api.ApiObserver
 import com.nuryazid.core.api.ApiResponse
 import com.nuryazid.core.data.CoreSession
@@ -27,16 +28,24 @@ class LoginViewModel: ViewModel() {
             apiResponse.postValue(ApiResponse().responseLoading("Masuk..."))
 
             initToken {
-                ApiObserver({ apiService.login(phone, password, "null") }) {
-                    val data = it.getJSONObject("data")
-                    CoreSession(context).setValue(Const.SESSION.USER, data.toString())
-                    apiResponse.postValue(ApiResponse().responseSuccess())
-                }.onError {
-                    apiResponse.postValue(it)
+                generateFirebaseRegid { regid ->
+                    ApiObserver({ apiService.login(phone, password, regid) }) {
+                        val data = it.getJSONObject("data")
+                        CoreSession(context).setValue(Const.SESSION.USER, data.toString())
+                        apiResponse.postValue(ApiResponse().responseSuccess())
+                    }.onError {
+                        apiResponse.postValue(it)
+                    }
                 }
             }
         } else {
             apiResponse.postValue(ApiResponse().responseError().apply { message = "Harap masukkan telepon dan kata sandi terlebih dahulu" })
+        }
+    }
+
+    private fun generateFirebaseRegid(result: (String) -> Unit) {
+        FirebaseMessaging.getInstance().token.addOnCompleteListener {
+            result(it.result)
         }
     }
 
