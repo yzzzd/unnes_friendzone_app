@@ -16,10 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Friendzone">
         <activity
-            android:name=".ui.profile.UpdateProfileActivity"
+            android:name=".ui.detail.FriendDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.detail.FriendDetailActivity"
+            android:name=".ui.profile.UpdateProfileActivity"
             android:exported="false" />
         <activity
             android:name=".ui.home.HomeActivity"

@@ -2,14 +2,11 @@
 <layout>
 
     <data>
-
-        <variable
-            name="friend"
-            type="com.friend.zone.data.User" />
-
         <variable
             name="viewModel"
             type="com.friend.zone.ui.detail.FriendDetailViewModel" />
+
+        <import type="android.view.View" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -30,7 +27,7 @@
                 android:layout_height="0dp"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
-                app:imageUrl="@{friend.photo}"
+                app:imageUrl="@{viewModel.friend.photo}"
                 app:layout_constraintDimensionRatio="1,1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -53,16 +50,17 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@{friend.name}"
+                    android:text="@{viewModel.friend.name}"
                     android:textColor="@color/black"
                     android:textSize="32dp" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:onClick="@{() -> viewModel.likeFriend(friend.id)}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:src="@drawable/ic_like_enable"
+                    android:onClick="@{() -> viewModel.likeFriend(viewModel.friend.id)}"
+                    android:src="@{viewModel.friend.liked ? @drawable/ic_like_enable : @drawable/ic_like_disable}"
+                    android:visibility="@{viewModel.showButtonLike ? View.VISIBLE : View.INVISIBLE}"
                     app:tint="@null" />
 
             </LinearLayout>
@@ -70,7 +68,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{friend.phone}"
+                android:text="@{viewModel.friend.phone}"
                 android:textSize="14dp" />
 
             <TextView
@@ -85,7 +83,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{friend.about}"
+                android:text="@{viewModel.friend.about}"
                 android:textSize="14dp" />
 
         </LinearLayout>

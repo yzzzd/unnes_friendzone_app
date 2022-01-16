@@ -45,6 +45,12 @@ interface ApiService {
         @Part photo: MultipartBody.Part?
     ): String
 
+    @FormUrlEncoded
+    @POST("like-user")
+    suspend fun likeUser(
+        @Field("users_id") users_id: Int?
+    ): String
+
     companion object {
         private val client: OkHttpClient by lazy {
             val interceptors = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
