@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "683571898793",
+    "project_id": "friendzone-aca57",
+    "storage_bucket": "friendzone-aca57.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:683571898793:android:90a0e10e1492ee78ecbcb8",
+        "android_client_info": {
+          "package_name": "com.friend.zone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "683571898793-9e5tov1k6fgj03pqv190teom75fef8uq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAh_WVXODS2U3XpdZ-10Wc8Jc7Sk6ZzGBQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "683571898793-9e5tov1k6fgj03pqv190teom75fef8uq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

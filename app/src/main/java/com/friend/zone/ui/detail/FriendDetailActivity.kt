@@ -16,5 +16,11 @@ class FriendDetailActivity : CoreActivity<ActivityFriendDetailBinding, FriendDet
 
         val friend = intent.getParcelableExtra<User>(Const.INTENT.DATA)
         viewModel.friend.postValue(friend)
+
+        viewModel.hasLike.observe(this, {
+            if (it) {
+                setResult(200)
+            }
+        })
     }
 }

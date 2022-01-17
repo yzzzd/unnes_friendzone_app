@@ -29,7 +29,7 @@ class HomeActivity : CoreActivity<ActivityHomeBinding, HomeViewModel>(R.layout.a
                     val intentDetail = Intent(this, FriendDetailActivity::class.java).apply {
                         putExtra(Const.INTENT.DATA, data)
                     }
-                    startActivity(intentDetail)
+                    startActivityForResult(intentDetail, 200)
                 }
         })
 
@@ -55,5 +55,13 @@ class HomeActivity : CoreActivity<ActivityHomeBinding, HomeViewModel>(R.layout.a
                 dialog.dismiss()
             }
             .show()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == 200 && resultCode == 200) {
+            viewModel.getFriendList()
+        }
     }
 }

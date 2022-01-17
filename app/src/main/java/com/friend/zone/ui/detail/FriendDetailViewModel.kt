@@ -14,6 +14,8 @@ class FriendDetailViewModel : ViewModel() {
 
     val friend = MutableLiveData<User>()
 
+    val hasLike = MutableLiveData(false)
+
     fun likeFriend(id: Int?) {
         showButtonLike.postValue(false)
         ApiObserver({ apiService.likeUser(id) }, true) {
@@ -24,6 +26,8 @@ class FriendDetailViewModel : ViewModel() {
             }
 
             friend.postValue(current)
+
+            hasLike.postValue(true)
         }
     }
 }
